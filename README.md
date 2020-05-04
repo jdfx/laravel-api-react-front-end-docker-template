@@ -29,7 +29,8 @@ DB_PASSWORD=
 This uses create-react-app: https://github.com/facebook/create-react-app
 
 ### Setting up your client
-- cd /client and run up.sh
+- set your ports etc in /client/.env
+- cd /client and run *./up.sh -create -node_modules -up*
 
 ### That's it
 - your client is running
