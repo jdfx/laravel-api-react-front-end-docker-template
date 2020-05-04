@@ -29,12 +29,14 @@ DB_PASSWORD=
 This uses create-react-app: https://github.com/facebook/create-react-app
 
 ### Setting up your client
-- add windows hosts file entry for your_client_name.local 127.0.0.1
+- cd /client and run up.sh
 
 ### That's it
+- your client is running
 
 
 # TODO
 - Production build scripts
 - CD/CI for pushing to production
 - Kibana
+- create seperate front end and back-end networks (external networks, link them via compose).
