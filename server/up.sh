@@ -6,9 +6,6 @@ export $(egrep -v '^#' .env | xargs) # Export the vars in .env into your shell
 printf "${GREEN}Updating nginx.conf with env vars${NC}\n"
 sed -i "s/docker_project_name/${app_name}/g" ./nginx/sites-enabled/app.conf
 
-printf "${GREEN}Running docker compose up...${NC}\n"
-docker-compose up -d
-
 for arg in "$@"
 do
     case $arg in
@@ -24,6 +21,9 @@ do
         ;;
         -key)
         printf "${GREEN}Generating app key..${NC}\n" && winpty docker-compose exec web php artisan key:generate
+        ;;
+        -up)
+        printf "${GREEN}Running docker compose up...${NC}\n" && docker-compose up -d
         ;;
     esac
 done

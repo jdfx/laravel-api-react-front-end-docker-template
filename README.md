@@ -8,7 +8,7 @@ The server setup is a modified version of: https://hub.docker.com/r/shincoder/ho
 
 ### Setting up your server
 - edit /server/.env with your app name and instance ID and ports (instance ID is used so we can run many versions of this app concurrently if we want).
-- cd /server and run *./up.sh -clone -composer -env -key* - this will set nginx conf, start containers, clone latest laravel, composer install and set app key etc..
+- cd /server and run *./up.sh -clone -composer -env -key -up* - this will set nginx conf, start containers, clone latest laravel, composer install start mysql and set app key etc..
 - link ./code directory to your .git remote for your codebase
 - add windows hosts file entry for your_server_name.local 127.0.0.1
 
@@ -24,6 +24,10 @@ DB_USERNAME=root
 DB_PASSWORD=
 ```
 
+Dont forget to create your database also you will need to disable caching_sha2_password for MySQL 8.0 as Laravel doesnt support this.
+
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+
 ## Client
 
 This uses create-react-app: https://github.com/facebook/create-react-app
@@ -37,6 +41,7 @@ This uses create-react-app: https://github.com/facebook/create-react-app
 
 
 # TODO
+- automate mysql user setup and passwords etc... (blank for dev)
 - Production build scripts
 - CD/CI for pushing to production
 - Kibana
