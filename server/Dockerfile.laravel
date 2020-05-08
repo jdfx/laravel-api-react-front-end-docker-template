@@ -3,13 +3,13 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
-ADD provision.sh /provision.sh
+ADD provision.laravel.sh /provision.laravel.sh
 
 ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 RUN chmod +x /*.sh
 
-RUN ./provision.sh
+RUN ./provision.laravel.sh
 
 WORKDIR /var/www/app
 

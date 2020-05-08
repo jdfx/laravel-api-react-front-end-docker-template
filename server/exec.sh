@@ -12,5 +12,8 @@ do
         -migrate)
         winpty docker container exec -it ${app_name}_${instance_id}_web bash -c "php artisan migrate"
         ;;
+        -clear)
+        winpty docker container exec -it ${app_name}_${instance_id}_web bash -c "php artisan cache:clear"
+        ;;
     esac
 done
