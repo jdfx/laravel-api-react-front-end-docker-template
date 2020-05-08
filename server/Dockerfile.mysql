@@ -1,5 +1,0 @@
-FROM mysql:8.0.20
-
-WORKDIR /
-
-ADD provision.mysql.sh /provision.mysql.sh

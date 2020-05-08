@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # Install packages
 ADD provision.laravel.sh /provision.laravel.sh
 
-ADD supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+ADD ../supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 RUN chmod +x /*.sh
 
