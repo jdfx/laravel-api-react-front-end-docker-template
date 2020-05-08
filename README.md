@@ -26,7 +26,12 @@ DB_PASSWORD=
 
 Dont forget to create your database also you will need to disable caching_sha2_password for MySQL 8.0 as Laravel doesnt support this.
 
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '';
+CREATE DATABASE api_server;
+GRANT ALL PRIVILEGES ON *.* TO root@'%' WITH GRANT OPTION;
+ALTER USER 'root'@'%' IDENTIFIED WITH mysql_native_password BY '';
+
+@todo - automate the above for dev.
+
 
 ## Client
 
