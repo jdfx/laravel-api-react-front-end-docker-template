@@ -1,0 +1,34 @@
+version: '3.7'
+services:
+  web:
+    container_name: "${app_name}_${instance_id}_web"
+    build:
+      context: .
+      dockerfile: "./provision/laravel/Dockerfile.laravel"
+    working_dir: /var/www/app
+    restart: unless-stopped
+    ports:
+      - "${server_host_web_port}:80" # web
+      - "${server_host_ssh_port}:22" # ssh
+    volumes:
+     # - ~/.composer:/home/homestead/.composer # composer caching
+     # - ~/.gitconfig:/home/homestead/.gitconfig # Git configuration ( access alias && config )
+      - ./code:/var/www/app # all apps
+      - ./provision/nginx/sites-enabled:/etc/nginx/sites-enabled # nginx sites ( in case you recreate the container )
+      - ./provision/nginx/ssl:/etc/nginx/ssl
+    links:
+      - mysql
+  mysql:
+    container_name: "${app_name}_${instance_id}_database"
+    image: mysql:8.0.20
+    # build:
+    #   context: .
+    #   dockerfile: "./Dockerfile.mysql"
+    restart: unless-stopped
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports: 
+      - 3306:3306
+    volumes:
+      - /var/lib/mysql
+      - ./provision/mysql:/docker-entrypoint-initdb.d
