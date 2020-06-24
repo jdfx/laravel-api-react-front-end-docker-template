@@ -3,9 +3,9 @@ FROM ubuntu:16.04
 ENV DEBIAN_FRONTEND noninteractive
 
 # Install packages
-ADD provision.laravel.sh /provision.laravel.sh
+ADD ./provision/laravel/provision.laravel.sh /provision.laravel.sh
 
-ADD ../supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+ADD ./provision/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 RUN chmod +x /*.sh
 
