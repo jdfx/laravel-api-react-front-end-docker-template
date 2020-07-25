@@ -4,7 +4,7 @@ services:
     container_name: "${app_name}_${instance_id}_web"
     build:
       context: .
-      dockerfile: "Dockerfile.laravel"
+      dockerfile: "./provision/laravel/Dockerfile.laravel"
     working_dir: /var/www/app
     restart: unless-stopped
     ports:

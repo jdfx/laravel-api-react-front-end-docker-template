@@ -60,6 +60,9 @@ mv composer.phar /usr/local/bin/composer
 # Add Composer Global Bin To Path
 printf "\nPATH=\"/home/homestead/.composer/vendor/bin:\$PATH\"\n" | tee -a /home/homestead/.profile
 
+composer config -g repo.packagist composer https://packagist.org
+composer config -g github-protocols https ssh
+
 # Laravel Envoy
 su homestead <<'EOF'
 /usr/local/bin/composer global require "laravel/envoy=~1.5.0"

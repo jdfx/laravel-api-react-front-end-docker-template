@@ -9,9 +9,10 @@ ADD ./provision/supervisor/supervisor.conf /etc/supervisor/conf.d/supervisor.con
 
 RUN chmod +x /*.sh
 
-RUN ./provision.laravel.sh
+RUN /provision.laravel.sh
 
 WORKDIR /var/www/app
+
 
 EXPOSE 80 22 35729 9876
 CMD ["/usr/bin/supervisord"]
