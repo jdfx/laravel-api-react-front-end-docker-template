@@ -18,6 +18,8 @@ services:
       - ./provision/nginx/ssl:/etc/nginx/ssl
     links:
       - mysql
+    networks:
+      - imsnews_subscriber_api_env_network
   mysql:
     container_name: "${app_name}_${instance_id}_database"
     image: mysql:8.0.20
@@ -28,7 +30,12 @@ services:
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports: 
-      - 3306:3306
+      - 3308:3306
     volumes:
       - /var/lib/mysql
       - ./provision/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - imsnews_subscriber_api_env_network
+networks:
+  imsnews_subscriber_api_env_network:
+      driver: bridge
