@@ -15,7 +15,7 @@ do
         printf "${GREEN}Installing container node_modules to volume (via alpine container)${NC}\n" && docker-compose run node_modules_container # Fires up a node:alpine container, runs npm install (to the volume above, then exits)
         ;;
         -up)
-        printf "${GREEN}Running docker compose...${NC}\n" && docker-compose up # Fires up the rest of the containers, which can now access the above node-modules
+        printf "${GREEN}Running docker compose...${NC}\n" && docker-compose up -d # Fires up the rest of the containers, which can now access the above node-modules
         ;;
     esac
 done

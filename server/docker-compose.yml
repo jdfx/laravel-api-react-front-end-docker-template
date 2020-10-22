@@ -40,6 +40,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: changeme
 networks:
-  objective_1_api_env_network:
+  changeme_api_env_network:
       driver: bridge
       name: changeme_api_env_network
