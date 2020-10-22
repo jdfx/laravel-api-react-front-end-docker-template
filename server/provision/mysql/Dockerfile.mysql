@@ -1,0 +1,5 @@
+FROM mysql:8.0.20
+
+# sort out provision script executable
+ADD ./provision/mysql/provision.mysql.sh /docker-entrypoint-initdb.d/provision.mysql.sh
+RUN chmod +x /docker-entrypoint-initdb.d/provision.mysql.sh

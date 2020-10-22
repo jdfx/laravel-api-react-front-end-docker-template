@@ -1,0 +1,6 @@
+[submodule "client/code"]
+	path = client/code
+	url = https://github.com/jdfx/react-app-auth.git
+[submodule "server/code"]
+	path = server/code
+	url = https://github.com/jdfx/laravel-passport-o-auth.git

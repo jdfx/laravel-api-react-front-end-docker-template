@@ -18,17 +18,28 @@ services:
       - ./provision/nginx/ssl:/etc/nginx/ssl
     links:
       - mysql
+    networks:
+      - changeme_api_env_network
+    depends_on:
+      - mysql
   mysql:
     container_name: "${app_name}_${instance_id}_database"
-    image: mysql:8.0.20
-    # build:
-    #   context: .
-    #   dockerfile: "./Dockerfile.mysql"
+    build:
+      context: .
+      dockerfile: "./provision/mysql/Dockerfile.mysql"
     restart: unless-stopped
     environment:
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports: 
-      - 3308:3306
+      - 3306:3306
     volumes:
       - /var/lib/mysql
-      - ./provision/mysql:/docker-entrypoint-initdb.d
+    networks:
+      - changeme_api_env_network
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      MYSQL_ROOT_PASSWORD: changeme
+networks:
+  objective_1_api_env_network:
+      driver: bridge
+      name: changeme_api_env_network
